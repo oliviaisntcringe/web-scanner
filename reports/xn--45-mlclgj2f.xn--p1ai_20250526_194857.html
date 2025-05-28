@@ -1,0 +1,107 @@
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Отчет об эксплуатации уязвимостей</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+            .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #2c3e50; margin-top: 30px; }
+            h3 { color: #2c3e50; }
+            .vulnerability { background: #f9f9f9; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .vuln-details { margin-left: 20px; }
+            .payload { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; }
+            .extracted-data { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; max-height: 200px; overflow-y: auto; }
+            .admin-panel { background: #f9f9f9; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .admin-compromised { border-left: 4px solid #e74c3c; }
+            .stats { background: #f9f9f9; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .footer { margin-top: 30px; font-size: 0.8em; color: #7f8c8d; text-align: center; }
+            .credentials { background: #e74c3c; color: white; padding: 5px 8px; border-radius: 4px; font-family: monospace; }
+            .method { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+            .get { background: #3498db; color: white; }
+            .post { background: #2ecc71; color: white; }
+            .rec-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; border-radius: 4px; }
+            .technique-box { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔍 ДЕТАЛЬНЫЙ ОТЧЕТ ОБ ЭКСПЛУАТАЦИИ УЯЗВИМОСТЕЙ</h1>
+    
+            <div class="vulnerability">
+                <h2>🔴 ОБНАРУЖЕНЫ АДМИНИСТРАТИВНЫЕ ИНТЕРФЕЙСЫ (3)</h2>
+            
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #1</h3>
+                        <p><strong>URL:</strong> https://xn--45-mlclgj2f.xn--p1ai/administrator</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> Официальный сайт Лицея №45 имени Академика C.П.Королёва - Панель управления</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #2</h3>
+                        <p><strong>URL:</strong> https://xn--45-mlclgj2f.xn--p1ai/administrator/index.php</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> Официальный сайт Лицея №45 имени Академика C.П.Королёва - Панель управления</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #3</h3>
+                        <p><strong>URL:</strong> https://xn--45-mlclgj2f.xn--p1ai/phpmyadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> phpMyAdmin</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+    <div class="stats">
+        <h2>📊 СТАТИСТИКА УЯЗВИМОСТЕЙ</h2>
+        <p><strong>Всего уязвимостей:</strong> 3</p>
+    <p><strong>Админ-панели:</strong> 3</p>
+
+    </div>
+    
+            <div class="footer">
+                <p>Отчет сгенерирован: 2025-05-26 19:48:57</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

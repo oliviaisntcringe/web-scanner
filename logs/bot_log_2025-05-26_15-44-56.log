@@ -1,0 +1,19 @@
+2025-05-26 15:44:56,955 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
+2025-05-26 15:44:56,955 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_15-44-56.log
+2025-05-26 15:44:57,235 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
+2025-05-26 15:44:57,235 - web_scanner_bot - INFO - Запуск Telegram бота
+2025-05-26 15:44:57,236 - web_scanner_bot - INFO - Создание нового event loop
+2025-05-26 15:44:57,236 - web_scanner_bot - INFO - Инициализация приложения Telegram
+2025-05-26 15:44:57,734 - web_scanner_bot - INFO - Регистрация обработчиков команд
+2025-05-26 15:44:57,735 - web_scanner_bot - INFO - Инициализация бота
+2025-05-26 15:44:58,092 - web_scanner_bot - INFO - Запуск бота
+2025-05-26 15:44:58,093 - web_scanner_bot - INFO - Запуск polling для получения обновлений
+2025-05-26 15:44:58,178 - web_scanner_bot - INFO - Бот запущен и готов к работе
+2025-05-26 15:45:24,954 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /scan для https://sch5-bogorodsk.edumsko.ru
+2025-05-26 15:45:25,350 - web_scanner_bot - INFO - Начало сканирования URL: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 15:45:25,351 - web_scanner_bot - INFO - Запуск сканирования для https://sch5-bogorodsk.edumsko.ru (режим эксплойта: False)
+2025-05-26 15:45:25,351 - web_scanner_bot - INFO - Отправка HTTP запроса на https://sch5-bogorodsk.edumsko.ru
+2025-05-26 15:45:25,614 - web_scanner_bot - INFO - Получен ответ от https://sch5-bogorodsk.edumsko.ru: статус 200
+2025-05-26 15:45:25,615 - web_scanner_bot - INFO - Анализ сайта на уязвимости: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 15:45:37,968 - web_scanner_bot - INFO - Анализ завершен: найдено 9 уязвимостей
+2025-05-26 15:45:37,992 - web_scanner_bot - INFO - Сканирование URL https://sch5-bogorodsk.edumsko.ru завершено, найдено уязвимостей: 9

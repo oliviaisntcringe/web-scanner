@@ -1,0 +1,7 @@
+2025-05-26 17:26:51,888 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
+2025-05-26 17:26:51,888 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_17-26-51.log
+2025-05-26 17:26:52,200 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
+2025-05-26 17:27:01,955 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /exp для https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:27:02,370 - web_scanner_bot - INFO - Начало эксплуатации уязвимостей для URL: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:29:17,591 - web_scanner_bot - INFO - Эксплуатация уязвимостей для URL https://sch5-bogorodsk.edumsko.ru завершена
+2025-05-26 17:29:18,457 - web_scanner_bot - ERROR - Ошибка при эксплуатации уязвимостей для https://sch5-bogorodsk.edumsko.ru: Text is too long

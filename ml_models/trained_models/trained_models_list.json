@@ -1,0 +1,12 @@
+[
+    "xss",
+    "sqli",
+    "csrf",
+    "ssrf",
+    "lfi",
+    "rce",
+    "a01_broken_access_control",
+    "a02_cryptographic_failures",
+    "a05_security_misconfiguration",
+    "a06_vulnerable_components"
+]

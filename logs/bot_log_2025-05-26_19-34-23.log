@@ -1,0 +1,18 @@
+2025-05-26 19:34:23,812 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
+2025-05-26 19:34:23,813 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_19-34-23.log
+2025-05-26 19:34:24,197 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
+2025-05-26 19:34:38,683 - web_scanner_bot - WARNING - Пользователь 7168936119 (botsma) вызвал неизвестную команду: /help
+2025-05-26 19:35:27,230 - web_scanner_bot - WARNING - Пользователь 7168936119 не указал URL для команды /scan
+2025-05-26 19:35:34,162 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /scan для https://kutkrop.ru/
+2025-05-26 19:35:34,710 - web_scanner_bot - INFO - Начало сканирования URL: https://kutkrop.ru/
+2025-05-26 19:35:34,710 - web_scanner_bot - INFO - Запуск сканирования для https://kutkrop.ru/ (режим эксплойта: False)
+2025-05-26 19:35:34,710 - web_scanner_bot - INFO - Отправка HTTP запроса на https://kutkrop.ru/
+2025-05-26 19:35:35,330 - web_scanner_bot - INFO - Получен ответ от https://kutkrop.ru/: статус 200
+2025-05-26 19:35:35,330 - web_scanner_bot - INFO - Анализ сайта на уязвимости: https://kutkrop.ru/
+2025-05-26 19:35:52,019 - web_scanner_bot - INFO - Анализ завершен: найдено 7 уязвимостей
+2025-05-26 19:35:52,020 - web_scanner_bot - INFO - Сканирование URL https://kutkrop.ru/ завершено, найдено уязвимостей: 7
+2025-05-26 19:35:52,024 - web_scanner_bot - INFO - Отчет в формате HTML для Obsidian сохранен: reports/scan_kutkrop.ru__20250526_193552.html
+2025-05-26 19:36:19,400 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /exp для https://kutkrop.ru/
+2025-05-26 19:36:19,810 - web_scanner_bot - INFO - Начало эксплуатации уязвимостей для URL: https://kutkrop.ru/
+2025-05-26 19:37:31,615 - web_scanner_bot - INFO - Эксплуатация уязвимостей для URL https://kutkrop.ru/ завершена
+2025-05-26 19:37:32,882 - web_scanner_bot - INFO - HTML-отчет сохранен в reports/kutkrop.ru_20250526_193731.html и отправлен пользователю

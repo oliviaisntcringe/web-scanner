@@ -1,0 +1,16 @@
+2025-05-26 17:17:32,542 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
+2025-05-26 17:17:32,543 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_17-17-32.log
+2025-05-26 17:17:32,854 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
+2025-05-26 17:18:07,999 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /scan для https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:18:08,362 - web_scanner_bot - INFO - Начало сканирования URL: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:18:08,362 - web_scanner_bot - INFO - Запуск сканирования для https://sch5-bogorodsk.edumsko.ru (режим эксплойта: False)
+2025-05-26 17:18:08,362 - web_scanner_bot - INFO - Отправка HTTP запроса на https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:18:08,697 - web_scanner_bot - INFO - Получен ответ от https://sch5-bogorodsk.edumsko.ru: статус 200
+2025-05-26 17:18:08,698 - web_scanner_bot - INFO - Анализ сайта на уязвимости: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:18:19,928 - web_scanner_bot - INFO - Анализ завершен: найдено 9 уязвимостей
+2025-05-26 17:18:19,930 - web_scanner_bot - INFO - Сканирование URL https://sch5-bogorodsk.edumsko.ru завершено, найдено уязвимостей: 9
+2025-05-26 17:18:19,932 - web_scanner_bot - INFO - Отчет в формате HTML для Obsidian сохранен: reports/scan_sch5-bogorodsk.edumsko.ru_20250526_171819.html
+2025-05-26 17:18:48,567 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /exp для https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:18:49,076 - web_scanner_bot - INFO - Начало эксплуатации уязвимостей для URL: https://sch5-bogorodsk.edumsko.ru
+2025-05-26 17:22:35,337 - web_scanner_bot - INFO - Эксплуатация уязвимостей для URL https://sch5-bogorodsk.edumsko.ru завершена
+2025-05-26 17:22:36,095 - web_scanner_bot - ERROR - Ошибка при эксплуатации уязвимостей для https://sch5-bogorodsk.edumsko.ru: Text is too long

