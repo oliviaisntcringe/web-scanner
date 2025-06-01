@@ -1,7 +1,0 @@
-2025-05-26 17:37:06,687 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
-2025-05-26 17:37:06,687 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_17-37-06.log
-2025-05-26 17:37:07,089 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
-2025-05-26 17:37:13,937 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /exp для https://sch5-bogorodsk.edumsko.ru
-2025-05-26 17:37:14,321 - web_scanner_bot - INFO - Начало эксплуатации уязвимостей для URL: https://sch5-bogorodsk.edumsko.ru
-2025-05-26 17:38:19,374 - web_scanner_bot - INFO - Эксплуатация уязвимостей для URL https://sch5-bogorodsk.edumsko.ru завершена
-2025-05-26 17:38:20,606 - web_scanner_bot - INFO - HTML-отчет сохранен в reports/sch5-bogorodsk.edumsko.ru_20250526_173819.html и отправлен пользователю

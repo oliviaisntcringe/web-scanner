@@ -51,7 +51,7 @@ from bot.bruteforce import bruteforce_target, format_brute_results, format_progr
 from service_scanner import ServiceScanner, scan_services, format_scan_results
 
 # Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
-TELEGRAM_BOT_TOKEN = '7800982906:AAFBX07MCeJC30fXFjrb1ry-9rAF35ZhopI'
+TELEGRAM_BOT_TOKEN = ''
 # Optional: Add a list of authorized user IDs
 # AUTHORIZED_USERS = [123456789, 987654321] 
 

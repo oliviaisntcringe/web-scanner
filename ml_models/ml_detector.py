@@ -2,126 +2,153 @@
 import os
 import joblib
 import numpy as np
+import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
+import re
+
+# Путь к папке с сохраненными моделями
+MODELS_DIR = os.path.join(os.path.dirname(__file__), 'trained_models')
 
 class MLDetector:
-    """Класс для работы с ML-моделями для обнаружения уязвимостей."""
+    """
+    Детектор уязвимостей, использующий разные подходы для разных типов уязвимостей.
+    """
     
     def __init__(self):
-        # Директория, где хранятся обученные модели
-        self.models_dir = os.path.join(os.path.dirname(__file__), '..', 'ml_models', 'trained_models')
-        
-        # Словарь для хранения загруженных моделей
+        """
+        Инициализирует детектор и загружает обученные модели.
+        """
         self.models = {}
+        self.vectorizers = {}
+        self.load_models()
         
-        # Пытаемся загрузить все доступные модели
-        self._load_all_models()
-    
-    def _load_all_models(self):
-        """Загружает все обученные модели."""
-        if not os.path.exists(self.models_dir):
-            print(f"Директория с моделями не существует: {self.models_dir}")
-            return
+    def load_models(self):
+        """
+        Загружает предварительно обученные модели и векторизаторы.
+        """
+        # Названия уязвимостей, для которых у нас есть модели
+        vulnerability_types = [
+            'xss', 'sqli', 'lfi', 'rce', 'csrf', 'ssrf',
+            'a01_broken_access_control', 'a02_cryptographic_failures', 
+            'a05_security_misconfiguration', 'a06_vulnerable_components'
+        ]
         
-        # Ищем все .pkl файлы в директории
-        for filename in os.listdir(self.models_dir):
-            if filename.endswith('_model.pkl'):
-                vulnerability_type = filename.replace('_model.pkl', '')
+        for vuln_type in vulnerability_types:
+            # Пути к сохраненным файлам
+            model_path = os.path.join(MODELS_DIR, f"{vuln_type}_model.pkl")
+            vectorizer_path = os.path.join(MODELS_DIR, f"{vuln_type}_vectorizer.pkl")
+            
+            # Загружаем модель и векторизатор, если файлы существуют
+            if os.path.exists(model_path) and os.path.exists(vectorizer_path):
                 try:
-                    model_path = os.path.join(self.models_dir, filename)
-                    self.models[vulnerability_type] = joblib.load(model_path)
-                    print(f"Загружена модель для {vulnerability_type}")
+                    with open(model_path, 'rb') as f:
+                        self.models[vuln_type] = pickle.load(f)
+                    with open(vectorizer_path, 'rb') as f:
+                        self.vectorizers[vuln_type] = pickle.load(f)
+                    print(f"Модель и векторизатор для {vuln_type} успешно загружены")
                 except Exception as e:
-                    print(f"Ошибка загрузки модели {filename}: {e}")
+                    print(f"Ошибка при загрузке модели для {vuln_type}: {e}")
+            else:
+                print(f"Модель для {vuln_type} не найдена в {MODELS_DIR}")
     
-    def extract_features(self, site_data):
-        """Извлекает признаки из данных сайта для ML-предсказания."""
-        url = site_data.get("url", "")
-        content = site_data.get("content", "")
-        headers = site_data.get("headers", {})
+    def extract_features(self, site_data, vuln_type):
+        """
+        Извлекает признаки из данных сайта для определенного типа уязвимости.
         
-        # Извлекаем базовые признаки
-        features = [
-            len(content) / 1000,  # Нормализованная длина контента
-            len(url) / 100,       # Нормализованная длина URL
-            1 if 'script' in content.lower() else 0,  # Наличие тегов script
-            1 if 'admin' in url.lower() else 0,       # URL содержит admin
-            len(headers),         # Количество заголовков
-            len(url.split('/'))   # Глубина URL
-        ]
+        Разные типы уязвимостей требуют разных признаков.
+        """
+        # Базовые признаки, которые мы можем использовать для любого типа уязвимости
+        features = {
+            'has_input_forms': False,
+            'has_json_response': False,
+            'has_js_code': False,
+            'has_file_uploads': False,
+            'has_includes': False,
+            'has_redirects': False,
+            'has_serialized_data': False,
+            'uses_cookies': False,
+            'content_length': 0,
+        }
         
-        # Дополнительные признаки для конкретных типов уязвимостей
-        # Инъекции (XSS, SQLi, RCE)
-        injection_features = [
-            1 if any(char in url for char in ["'", "\"", "<", ">", ";", "="]) else 0,  # Спец. символы в URL
-            1 if any(char in content for char in ["SELECT", "INSERT", "UPDATE", "DELETE", "DROP"]) else 0,  # SQL-ключевые слова
-            1 if "alert(" in content else 0,  # XSS-паттерн
-            1 if any(cmd in content.lower() for cmd in ["exec", "system", "shell_exec", "eval", "os."]) else 0  # RCE-паттерны
-        ]
+        # Получаем содержимое страницы и заголовки
+        content = site_data.get('content', '')
+        url = site_data.get('url', '')
+        headers = site_data.get('headers', {})
         
-        # CSRF признаки
-        csrf_features = [
-            1 if "form" in content.lower() else 0,  # Наличие форм
-            1 if "csrf" in content.lower() else 0,  # CSRF-токены
-            1 if "method=\"post\"" in content.lower() or "method='post'" in content.lower() else 0  # POST-методы
-        ]
+        # Заполняем базовые признаки на основе содержимого и заголовков
+        features['content_length'] = len(content)
+        features['has_input_forms'] = '<form' in content.lower() or '<input' in content.lower()
+        features['has_json_response'] = 'application/json' in headers.get('Content-Type', '').lower() if headers else False
+        features['has_js_code'] = '<script' in content.lower() or '.js' in content.lower()
+        features['has_file_uploads'] = 'type="file"' in content.lower() or 'multipart/form-data' in content.lower()
+        features['uses_cookies'] = 'cookie' in str(headers).lower() if headers else False
         
-        # A01 Broken Access Control признаки
-        bac_features = [
-            1 if any(segment in url.lower() for segment in ["admin", "config", "settings", "profile"]) else 0,  # Админ-пути
-            1 if "id=" in url else 0,  # Параметры ID
-            1 if "auth" in content.lower() or "login" in content.lower() else 0  # Авторизация
-        ]
+        # Более специфичные признаки для разных типов уязвимостей
+        if vuln_type == 'xss':
+            # Для XSS важны места, где пользовательский ввод может отображаться
+            features['has_echoed_params'] = bool(re.search(r'value=["\']\s*\w+\s*["\']', content))
+            features['has_dom_manipulation'] = 'document.write' in content or 'innerHTML' in content
         
-        # Объединяем все признаки
-        all_features = features + injection_features + csrf_features + bac_features
+        elif vuln_type == 'sqli':
+            # Для SQL-инъекций ищем признаки работы с базой данных
+            features['has_sql_errors'] = bool(re.search(r'sql|mysql|sqlite|oracle|db|database', content.lower()))
+            features['has_query_params'] = '?' in url and ('=' in url.split('?')[1] if '?' in url else False)
         
-        return np.array(all_features)
+        elif vuln_type == 'lfi':
+            # Для LFI ищем признаки включения файлов
+            features['has_includes'] = bool(re.search(r'include|require|include_once|require_once', content.lower()))
+            features['has_file_params'] = bool(re.search(r'file=|path=|dir=', url.lower()))
+        
+        elif vuln_type == 'rce':
+            # Для RCE ищем признаки выполнения команд
+            features['has_shell_functions'] = bool(re.search(r'exec|system|passthru|shell_exec|popen', content.lower()))
+            features['has_eval'] = 'eval(' in content
+        
+        # Текстовое представление для векторизатора
+        text_features = f"{url} {content}"
+        
+        return features, text_features
     
-    def predict(self, site_data, vulnerability_type):
-        """Предсказывает, содержит ли сайт указанную уязвимость."""
-        if vulnerability_type not in self.models:
-            return {
-                "prediction": False,
-                "confidence": 0.0,
-                "message": f"Модель для {vulnerability_type} не найдена"
-            }
+    def predict(self, site_data, vuln_type):
+        """
+        Предсказывает наличие уязвимости определенного типа.
         
-        # Извлекаем признаки
-        features = self.extract_features(site_data)
-        
-        # Получаем модель
-        model = self.models[vulnerability_type]
+        Args:
+            site_data: Словарь с данными о сайте (URL, контент, заголовки)
+            vuln_type: Тип уязвимости для проверки
+            
+        Returns:
+            Словарь с результатами предсказания и уверенностью
+        """
+        # Проверяем, есть ли у нас модель для этого типа уязвимости
+        if vuln_type not in self.models or vuln_type not in self.vectorizers:
+            print(f"Нет обученной модели для {vuln_type}")
+            return {"prediction": False, "confidence": 0.0}
         
         try:
-            # Предсказываем класс (0 - безопасно, 1 - уязвимо)
-            prediction = model.predict([features])[0]
+            # Извлекаем признаки из данных сайта
+            features, text_features = self.extract_features(site_data, vuln_type)
             
-            # Получаем вероятность для положительного класса
-            confidence = 0.0
-            if hasattr(model, "predict_proba"):
-                probas = model.predict_proba([features])[0]
-                confidence = probas[1] if len(probas) > 1 else 0.0
+            # Преобразуем текстовые признаки в числовые с помощью TF-IDF
+            text_features_vector = self.vectorizers[vuln_type].transform([text_features])
+            
+            # Получаем предсказание от модели
+            prediction_prob = self.models[vuln_type].predict_proba(text_features_vector)
+            
+            # Вероятность того, что сайт уязвим
+            confidence = prediction_prob[0][1] if prediction_prob.shape[1] > 1 else prediction_prob[0][0]
+            
+            # Класс уязвимости (True/False)
+            prediction = confidence > 0.5
             
             return {
                 "prediction": bool(prediction),
-                "confidence": float(confidence),
-                "message": f"Уязвимость {vulnerability_type} {'обнаружена' if prediction else 'не обнаружена'} с уверенностью {confidence:.2f}"
+                "confidence": float(confidence)
             }
+            
         except Exception as e:
-            return {
-                "prediction": False,
-                "confidence": 0.0,
-                "message": f"Ошибка при предсказании: {e}"
-            }
-    
-    def predict_all(self, site_data):
-        """Проверяет сайт на все доступные типы уязвимостей."""
-        results = {}
-        
-        for vulnerability_type in self.models:
-            results[vulnerability_type] = self.predict(site_data, vulnerability_type)
-        
-        return results
+            print(f"Ошибка при предсказании для {vuln_type}: {e}")
+            return {"prediction": False, "confidence": 0.0}
 
 # Пример использования
 if __name__ == "__main__":

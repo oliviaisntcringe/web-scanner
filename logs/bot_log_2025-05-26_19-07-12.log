@@ -1,4 +1,0 @@
-2025-05-26 19:07:12,833 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
-2025-05-26 19:07:12,833 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_19-07-12.log
-2025-05-26 19:07:13,069 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
-2025-05-26 19:07:22,664 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /brute для https://sch5-bogorodsk.edumsko.ru/adm с логином admin

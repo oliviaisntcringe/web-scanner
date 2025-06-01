@@ -1,7 +1,0 @@
-2025-05-26 18:05:49,148 - web_scanner_bot - INFO - ===== Веб сканнер с Telegram ботом запущен =====
-2025-05-26 18:05:49,148 - web_scanner_bot - INFO - Логи сохраняются в: logs/bot_log_2025-05-26_18-05-49.log
-2025-05-26 18:05:49,512 - web_scanner_bot - INFO - Telegram Bot Token: 78009...ZhopI
-2025-05-26 18:07:50,932 - web_scanner_bot - INFO - Пользователь 7168936119 (botsma) вызвал команду /exp для https://google-gruyere.appspot.com/375070508024517241055927635767759599349/
-2025-05-26 18:07:51,472 - web_scanner_bot - INFO - Начало эксплуатации уязвимостей для URL: https://google-gruyere.appspot.com/375070508024517241055927635767759599349/
-2025-05-26 18:08:15,211 - web_scanner_bot - INFO - Эксплуатация уязвимостей для URL https://google-gruyere.appspot.com/375070508024517241055927635767759599349/ завершена
-2025-05-26 18:08:16,024 - web_scanner_bot - INFO - HTML-отчет сохранен в reports/google-gruyere.appspot.com_20250526_180815.html и отправлен пользователю

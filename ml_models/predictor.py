@@ -2,12 +2,12 @@ import json
 import os
 import importlib
 
-# Path to the directory where generator_data.py saves its output
+# Тут хранятся данные для обучения моделей
 TRAINING_DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'training_data')
 DETECTORS_DIR = os.path.join(os.path.dirname(__file__), 'detectors')
 
 def load_training_data(vulnerability_type):
-    """Loads training data for a specific vulnerability type."""
+    """Загружает примеры для конкретного типа уязвимости."""
     file_path = os.path.join(TRAINING_DATA_DIR, f"{vulnerability_type}_training_data.json")
     if not os.path.exists(file_path):
         print(f"Warning: Training data file not found: {file_path}")
@@ -21,33 +21,33 @@ def load_training_data(vulnerability_type):
         print(f"Error loading training data for {vulnerability_type} from {file_path}: {e}")
         return None
 
-# List of detector modules and their corresponding data files (if any)
-# Format: (module_name, function_name, data_key_or_None, owasp_category_or_None)
-# data_key is used to load from *_training_data.json
+# Список всех детекторов и нужных им данных
+# Формат: (название_файла, название_функции, источник_данных, категория_уязвимости)
+# Мы загружаем данные из файлов *_training_data.json
 DETECTOR_CONFIG = [
     ("a01_broken_access_control_detector", "detect", "a01_broken_access_control", "A01_Broken_Access_Control"),
     ("a02_cryptographic_failures_detector", "detect", "a02_cryptographic_failures", "A02_Cryptographic_Failures"),
-    ("a03_injection_detector", "detect", ["xss", "sqli", "rce"], "A03_Injection"), # Takes multiple data types
+    ("a03_injection_detector", "detect", ["xss", "sqli", "rce"], "A03_Injection"), # Этот детектор использует разные наборы данных
     ("a04_insecure_design_detector", "detect", None, "A04_Insecure_Design"),
     ("a05_security_misconfiguration_detector", "detect", "a05_security_misconfiguration", "A05_Security_Misconfiguration"),
     ("a06_vulnerable_components_detector", "detect", "a06_vulnerable_components", "A06_Vulnerable_Components"),
     ("a07_identification_authentication_detector", "detect", None, "A07_Identification_Authentication_Failures"),
-    ("a08_software_data_integrity_detector", "detect", "rce", "A08_Software_Data_Integrity_Failures"), # RCE data for Deserialization
+    ("a08_software_data_integrity_detector", "detect", "rce", "A08_Software_Data_Integrity_Failures"), # Используем данные по RCE для проверки десериализации
     ("a09_logging_monitoring_detector", "detect", None, "A09_Security_Logging_Monitoring_Failures"),
     ("a10_ssrf_detector", "detect", "ssrf", "A10_Server_Side_Request_Forgery"),
-    ("lfi_detector", "detect", "lfi", "LFI"), # Standalone LFI
-    ("rce_detector", "detect", "rce", "RCE"), # Standalone RCE (Command Injection)
-    ("csrf_detector", "detect", "csrf", "CSRF"), # CSRF
+    ("lfi_detector", "detect", "lfi", "LFI"), # Проверка на локальное включение файлов
+    ("rce_detector", "detect", "rce", "RCE"), # Проверка на исполнение команд
+    ("csrf_detector", "detect", "csrf", "CSRF"), # Проверка на CSRF
 ]
 
 def predict_vulnerabilities(site_data):
-    """Analyzes site data by calling various vulnerability detectors."""
+    """Проверяет сайт на наличие разных уязвимостей."""
     print(f"Analyzing {site_data.get('url', 'unknown site')} for vulnerabilities...")
     all_vulnerabilities = []
     
     loaded_samples_cache = {}
 
-    # Инициализируем ML-детектор для использования обученных моделей
+    # Запускаем наш основной детектор
     try:
         from ml_models.ml_detector import MLDetector
         ml_detector = MLDetector()
@@ -58,56 +58,56 @@ def predict_vulnerabilities(site_data):
 
     for module_name, func_name, data_keys, category_name in DETECTOR_CONFIG:
         try:
-            # Dynamically import the detector module
+            # Загружаем нужный детектор
             detector_module = importlib.import_module(f".detectors.{module_name}", package="ml_models")
             detect_function = getattr(detector_module, func_name)
             
-            # Prepare samples for the detector
+            # Подготавливаем данные для анализа
             current_samples = {}
             if data_keys:
-                if isinstance(data_keys, list): # Multiple data types for one detector
+                if isinstance(data_keys, list): # Если детектору нужны разные типы данных
                     for key in data_keys:
                         if key not in loaded_samples_cache:
                             loaded_samples_cache[key] = load_training_data(key)
                         current_samples[key] = loaded_samples_cache[key]
-                else: # Single data type
+                else: # Если один тип данных
                     if data_keys not in loaded_samples_cache:
                         loaded_samples_cache[data_keys] = load_training_data(data_keys)
-                    current_samples = loaded_samples_cache[data_keys] # Pass the list of samples directly
+                    current_samples = loaded_samples_cache[data_keys] # Передаем список примеров
 
-            # Call the detector function
-            # The detector function should handle if samples is a dict or a list
-            if current_samples or not data_keys: # Proceed if samples are loaded or not needed
+            # Запускаем детектор на проверку сайта
+            # Детектор сам разберется что ему дали - словарь или список
+            if current_samples or not data_keys: # Запускаем если есть данные или они не нужны
                 print(f"Running detector: {module_name}...")
                 findings = detect_function(site_data, current_samples if data_keys else None)
                 if findings:
                     for finding in findings:
-                        # Ensure each finding has a 'type' and 'details'
+                        # Проверяем что результат правильный
                         if 'type' not in finding or 'details' not in finding:
                             print(f"Warning: Malformed finding from {module_name}: {finding}")
                             continue
-                        # Optionally, prepend the main category if not already specific
+                        # Можно добавить категорию в начало, если нужно
                         # if category_name and not finding['type'].startswith(category_name):
                         #    finding['type'] = f"{category_name}_{finding['type']}"
                         all_vulnerabilities.append(finding)
             else:
                 print(f"Skipping detector {module_name} due to missing training data: {data_keys}")
                 
-            # Если ML-детектор доступен, проверяем с его помощью
+            # Теперь пробуем найти уязвимости с помощью умного детектора
             if ml_detector and data_keys and not isinstance(data_keys, list):
                 try:
                     ml_result = ml_detector.predict(site_data, data_keys)
                     if ml_result["prediction"] and ml_result["confidence"] > 0.7:
                         ml_finding = {
-                            "type": f"{data_keys.upper()}_ML_Detection",
-                            "details": f"ML-модель обнаружила признаки {data_keys} с уверенностью {ml_result['confidence']:.2f}",
+                            "type": f"{data_keys.upper()}_Detection",
+                            "details": f"Обнаружены признаки {data_keys} с точностью {ml_result['confidence']:.2f}",
                             "severity": "high",
                             "ml_confidence": ml_result["confidence"]
                         }
                         all_vulnerabilities.append(ml_finding)
-                        print(f"ML-детектор обнаружил {data_keys} с уверенностью {ml_result['confidence']:.2f}")
+                        print(f"Детектор обнаружил {data_keys} с точностью {ml_result['confidence']:.2f}")
                 except Exception as e:
-                    print(f"Ошибка при ML-анализе для {data_keys}: {e}")
+                    print(f"Ошибка при анализе для {data_keys}: {e}")
 
         except ImportError as e:
             print(f"Error importing detector {module_name}: {e}")
@@ -120,7 +120,7 @@ def predict_vulnerabilities(site_data):
         print("No specific vulnerabilities identified by any detector.")
         return []
     else:
-        # Deduplicate findings
+        # Убираем повторы в результатах
         unique_vulnerabilities = []
         seen = set()
         for vuln in all_vulnerabilities:
@@ -133,8 +133,8 @@ def predict_vulnerabilities(site_data):
         return unique_vulnerabilities
 
 if __name__ == '__main__':
-    # Example usage:
-    # Create dummy training data files for testing if generator_data.py hasn't run
+    # Тестовый запуск:
+    # Если нет данных - создаем тестовые
     if not os.path.exists(TRAINING_DATA_DIR):
         os.makedirs(TRAINING_DATA_DIR)
     
@@ -144,7 +144,7 @@ if __name__ == '__main__':
         "headers": {"Server": "Apache/2.2.15 (Debian)", "X-Powered-By": "PHP/5.3.3"}
     }
     
-    # Create dummy training files if they don't exist for the test to run
+    # Создаем пустые файлы с данными для тестирования
     for _, _, data_keys, _ in DETECTOR_CONFIG:
         if data_keys:
             keys_to_check = data_keys if isinstance(data_keys, list) else [data_keys]
@@ -153,7 +153,7 @@ if __name__ == '__main__':
                     p = os.path.join(TRAINING_DATA_DIR, f"{key}_training_data.json")
                     if not os.path.exists(p):
                         with open(p, 'w') as f:
-                            json.dump({"samples": [{"html": "<script>alert(1)</script>", "is_vulnerable": True, "url": "http://example.com"}]}, f) # Minimal sample
+                            json.dump({"samples": [{"html": "<script>alert(1)</script>", "is_vulnerable": True, "url": "http://example.com"}]}, f) # Простейший пример
                             
     results = predict_vulnerabilities(dummy_site_data)
     print("\n--- Analysis Complete ---")
